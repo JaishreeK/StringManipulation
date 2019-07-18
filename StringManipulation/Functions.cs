@@ -53,52 +53,27 @@ namespace StringManipulation
         // Complete the makeAnagram function below.
         public int makeAnagram(string a, string b)
         {
-            int numDeletes = 0;
-
-            char[] aCharArray = a.ToLower().ToCharArray();
-            char[] bCharArray = b.ToLower().ToCharArray();
-                      
-            char[] aDiff = aCharArray.Except(bCharArray).ToArray();
-            char[] bDiff = bCharArray.Except(aCharArray).ToArray();
-            int[] charCountsA = new int[aDiff.Length];
-            for(int i=0;i<aDiff.Length;i++)
-            {
-                //find out no. of repetitions of each character in the first string
-               charCountsA[i] = a.Count(x => x == aDiff[i]);
-
-            }
-            int sumADiff = charCountsA.Sum();
-            int[] charCountsB= new int[bDiff.Length];
-            for (int i = 0; i < bDiff.Length; i++)
-            {
-                //find out no. of repetitions of each character in the first string
-                charCountsB[i] = b.Count(x => x == bDiff[i]);
-
-            }
-
-            int sumBDiff = charCountsB.Sum();
+            int numDeletes = 0;          
+            //Write custom except function which takes care of repetitions
+            int sumADiff = Except(a,b);
+            int sumBDiff = Except(b, a);
 
             numDeletes = sumADiff + sumBDiff;
            
             return numDeletes;
         }
 
-        public int solution(int[] A)
+        public int Except(string a,string b)
         {
-            int num = 1;           
-            List<int> listA = new List<int>(A);
-            listA.RemoveAll(x => x < 0); 
-            while (listA.Count > 0)
+            foreach (var ch in a)
             {
-                if (listA.Find(x => x == num) > 0)
+                if (b.Contains(ch))
                 {
-                    listA.RemoveAll(x => x == num);
-                    num++;
+                    int index = b.IndexOf(ch);
+                    b = b.Remove(index, 1);
                 }
-                else break;
             }
-            return num;
+            return b.Length;
         }
-
     }
 }

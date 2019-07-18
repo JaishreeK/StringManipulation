@@ -2,13 +2,42 @@
 using StringManipulation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-
-namespace StringManipulationTests
+namespace StringManipulation.Tests
 {
-    [TestClass]
+    [TestClass()]
     public class FunctionTests
     {
+
         Functions func = new Functions();
+
+        [TestMethod()]
+        public void makeAnagramTest()
+        {
+            string a = "fcrxzwscanmligyxyvym";
+            string b = "jxwtrhvujlmrpdoqbisbwhmgpmeoke";
+            int res = func.makeAnagram(a, b);
+            Assert.AreEqual(30, res);
+        }
+
+        [TestMethod()]
+        public void ExceptTest1()
+        {
+            string a = "fcrxzwscanmligyxyvym";
+            string b = "jxwtrhvujlmrpdoqbisbwhmgpmeoke";
+            var res = func.Except(a, b);
+            Assert.AreEqual(20,res);
+        }
+
+        [TestMethod()]
+        public void ExceptTest2()
+        {
+            string b = "fcrxzwscanmligyxyvym";
+            string a = "jxwtrhvujlmrpdoqbisbwhmgpmeoke";
+            var res = func.Except(a, b);
+            Assert.AreEqual(10, res);
+        }
+
+
         //[TestMethod]
         //public void TestMethod1()
         //{
@@ -22,22 +51,17 @@ namespace StringManipulationTests
         //    func.alternatingCharacters("AAABBB");
         //}
 
-        [TestMethod()]
-        public void solutionTest()
-        {
-            int[] A = new int[] { 1, 3, 6, 4, 1, 2 };
-            int r =  func.solution(A);
-            Assert.AreEqual(5,r);
-        }
+
 
         //[TestMethod()]
-        //public void makeAnagramTest()
+        //public void makeAnagramTest1()
         //{
         //    string a = "fcrxzwscanmligyxyvym";
         //    string b = "jxwtrhvujlmrpdoqbisbwhmgpmeoke";
         //   func.makeAnagram(a, b);
         //    Assert.Fail();
         //}
-        
     }
 }
+
+
