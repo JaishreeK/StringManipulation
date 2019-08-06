@@ -25,7 +25,7 @@ namespace StringManipulation.Tests
             string a = "fcrxzwscanmligyxyvym";
             string b = "jxwtrhvujlmrpdoqbisbwhmgpmeoke";
             var res = func.Except(a, b);
-            Assert.AreEqual(20,res);
+            Assert.AreEqual(20, res);
         }
 
         [TestMethod()]
@@ -35,6 +35,14 @@ namespace StringManipulation.Tests
             string a = "jxwtrhvujlmrpdoqbisbwhmgpmeoke";
             var res = func.Except(a, b);
             Assert.AreEqual(10, res);
+        }
+
+        [TestMethod()]
+        // aabbccddeefghi
+        //abbac
+        public void isValidTest()
+        {           
+            Assert.AreEqual("YES", func.isValid("aabbccddeefghi"));
         }
 
 

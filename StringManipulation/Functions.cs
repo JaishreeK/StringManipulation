@@ -75,5 +75,44 @@ namespace StringManipulation
             }
             return b.Length;
         }
+
+        // Complete the isValid function below.
+        public string isValid(string s)
+        {
+            //abc
+           
+            Dictionary<char, int> countChar = new Dictionary<char, int>();
+            foreach (char c in s)
+            {
+                if (countChar.ContainsKey(c))
+                    countChar[c]++;
+                else
+                    countChar.Add(c, 1);
+            }
+
+            int top1 = countChar.Values.GroupBy(i => i).OrderByDescending(g => g.Count()).Select(g => g.Key).FirstOrDefault();
+            int increaseFlag = 0;
+            foreach (char key in countChar.Keys)
+            {
+                if (countChar[key] != top1)
+                {
+                    if ((increaseFlag == 0)&&((countChar[key] == top1 + 1) || (countChar[key] == 1)))                                           
+                            increaseFlag++;
+                        else
+                            return "NO";                    
+                }
+            }
+           // result = (increaseFlag > 1)? "NO": "YES";
+
+            return "YES";
+
+        }
+
+
+
+        //  My solution is passing all test cases
+
+        // def isValid(s): mydic=defaultdict(int) for i in s: mydic[i]+=1 k=list(mydic.values()) if max(k)==min(k) : return 'YES' 
+        //if (k.count(max(k))==1) and((len(k)-k.count(min(k)))==1 and(max(k)-min(k)<=1)) or(k.count(min(k))==1 and(len(k)-k.count(max(k)))==1 and min(k)==1) : return 'YES' return 'NO'
     }
 }
