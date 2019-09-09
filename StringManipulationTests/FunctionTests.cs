@@ -41,8 +41,21 @@ namespace StringManipulation.Tests
         // aabbccddeefghi
         //abbac
         public void isValidTest()
-        {           
+        {
             Assert.AreEqual("YES", func.isValid("aabbccddeefghi"));
+        }
+
+        [TestMethod()]
+        public void reverseTest()
+        {
+            Assert.AreEqual("ads", func.reverse("sda"));
+        }
+
+        [TestMethod()]
+        public void caesarCipherTest()
+        {
+            //Assert.AreEqual(func.caesarCipher("middle - Outz",2), "okffng - Qwvb");
+            Assert.AreEqual(func.caesarCipher("www.abc.xy", 87), "fff.jkl.gh");
         }
 
 

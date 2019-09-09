@@ -79,8 +79,6 @@ namespace StringManipulation
         // Complete the isValid function below.
         public string isValid(string s)
         {
-            //abc
-           
             Dictionary<char, int> countChar = new Dictionary<char, int>();
             foreach (char c in s)
             {
@@ -102,17 +100,61 @@ namespace StringManipulation
                             return "NO";                    
                 }
             }
-           // result = (increaseFlag > 1)? "NO": "YES";
-
             return "YES";
+        }
+
+        //// Complete the substrCount function below.
+        //public long substrCount(int n, string s)
+        //{
+
+
+        //}
+
+        // Complete the substrCount function below.
+        public string reverse(string s)
+        {
+            int n = s.Length;
+            char[] tempStr = new char[n];
+            char[] tmp = s.ToCharArray();
+            for (int i = s.Length - 1,j = 0;i>=0;i--,j++)
+            {
+                tempStr[j] = tmp[i];
+            }
+
+            return new string(tempStr);
+
+
 
         }
 
 
+        // Complete the caesarCipher function below.
+        public string caesarCipher(string s, int k)
+        {
+            string result="";
+            foreach (var c in s)
+            {                
+                if (!char.IsLetter(c))
+                    result = result + c;
+                else
+                {
+                    long numChar = Convert.ToInt64(c);
+                    k = k % 26;
+                    int checkUpperValue = 90, checkLowerValue = 122;
 
-        //  My solution is passing all test cases
+                    int checkValue = Char.IsLower(c) ? checkLowerValue : checkUpperValue;
+                                                               
+                    if (numChar + k <= checkValue)
+                        result = result + Convert.ToChar(numChar + k);
+                    else
+                        result = result + Convert.ToChar(numChar + k - 26);
+                  
+                }
+            }
+            return result;
 
-        // def isValid(s): mydic=defaultdict(int) for i in s: mydic[i]+=1 k=list(mydic.values()) if max(k)==min(k) : return 'YES' 
-        //if (k.count(max(k))==1) and((len(k)-k.count(min(k)))==1 and(max(k)-min(k)<=1)) or(k.count(min(k))==1 and(len(k)-k.count(max(k)))==1 and min(k)==1) : return 'YES' return 'NO'
+        }
+
+
     }
 }
